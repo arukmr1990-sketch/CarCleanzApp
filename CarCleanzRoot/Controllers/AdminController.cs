@@ -1,34 +1,36 @@
-using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Http;
 
-namespace CarCleanz.Controllers
+namespace CarCleanzApp.Controllers
 {
     public class AdminController : Controller
     {
-        private readonly IConfiguration _config;
-        private readonly HttpClient _http;
+        private const string AdminUsername = "admin";
+        private const string AdminPassword = "carcleanz@123"; // you can change this
 
-        public AdminController(IConfiguration config, HttpClient http)
+        [HttpGet]
+        public IActionResult Login()
         {
-            _config = config;
-            _http = http;
-            _http.BaseAddress = new Uri(_config["Supabase:Url"]?.TrimEnd('/') + "/rest/v1/");
-            _http.DefaultRequestHeaders.Add("apikey", _config["Supabase:Key"]);
-            _http.DefaultRequestHeaders.Add("Authorization", $"Bearer {_config["Supabase:Key"]}");
-            _http.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            return View();
         }
 
-        public async Task<IActionResult> Index()
+        [HttpPost]
+        public IActionResult Login(string username, string password)
         {
-            var resp = await _http.GetAsync("Bookings?select=*");
-            if(!resp.IsSuccessStatusCode) {
-                ViewBag.Error = $"Failed to fetch bookings (HTTP {resp.StatusCode})";
-                return View(Array.Empty<object>());
+            if (username == AdminUsername && password == AdminPassword)
+            {
+                HttpContext.Session.SetString("IsAdminLoggedIn", "true");
+                return RedirectToAction("Admin", "Booking");
             }
-            var json = await resp.Content.ReadAsStringAsync();
-            ViewBag.BookingsJson = json;
+
+            ViewBag.Error = "Invalid username or password";
             return View();
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Remove("IsAdminLoggedIn");
+            return RedirectToAction("Login");
         }
     }
 }
