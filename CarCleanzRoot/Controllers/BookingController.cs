@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using CarCleanzApp.Models;
+using CarCleanz.Models;
 using System.Collections.Generic;
 using CarCleanz.Data;
 
