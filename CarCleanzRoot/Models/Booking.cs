@@ -1,4 +1,6 @@
 namespace CarCleanzApp.Models
+
+
 {
     public class Booking
     {
