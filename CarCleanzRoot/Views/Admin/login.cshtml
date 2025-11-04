@@ -1,1 +1,23 @@
+@{
+    ViewData["Title"] = "Admin Login";
+}
+
+<h2 style="color:white;">Admin Login</h2>
+
+<form method="post" action="/Admin/Login" style="max-width:400px;margin:auto;">
+    <div style="margin-bottom:10px;">
+        <label>Username:</label>
+        <input type="text" name="username" required class="form-control" />
+    </div>
+    <div style="margin-bottom:10px;">
+        <label>Password:</label>
+        <input type="password" name="password" required class="form-control" />
+    </div>
+    <button type="submit">Login</button>
+
+    @if (ViewBag.Error != null)
+    {
+        <p style="color:red;">@ViewBag.Error</p>
+    }
+</form>
 
