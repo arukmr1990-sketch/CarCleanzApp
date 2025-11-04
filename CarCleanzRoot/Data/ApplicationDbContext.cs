@@ -1,3 +1,5 @@
+using CarCleanz.Models;
+
 using Microsoft.EntityFrameworkCore;
 
 
