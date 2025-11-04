@@ -5,19 +5,28 @@ using Microsoft.Extensions.Hosting;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+builder.Services.AddControllersWithViews();
+
+// ✅ Enables session storage for login tracking
+builder.Services.AddSession();
 
 var app = builder.Build();
 
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Home/Error");
-}
+// Middleware order is important!
+app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
+// ✅ Activates session for all requests
+app.UseSession();
+
+// Authorization (if needed later)
+app.UseAuthorization();
+
+// Default route
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
