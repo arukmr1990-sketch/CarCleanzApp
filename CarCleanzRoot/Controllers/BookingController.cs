@@ -15,13 +15,19 @@ namespace CarCleanzApp.Controllers
             return View();
         }
 
-        // POST: Save booking
         [HttpPost]
-        public IActionResult Submit(Booking booking)
-        {
-            bookings.Add(booking);
-            return RedirectToAction("Success");
-        }
+public IActionResult Submit(Booking booking)
+{
+    if (ModelState.IsValid)
+    {
+        _context.Bookings.Add(booking);  // Save booking into database
+        _context.SaveChanges();          // Commit the transaction
+        return RedirectToAction("Success");
+    }
+
+    return View("Index", booking); // return back with validation errors
+}
+
 
         public IActionResult Success()
         {
