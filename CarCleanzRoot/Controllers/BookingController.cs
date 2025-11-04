@@ -29,8 +29,13 @@ namespace CarCleanzApp.Controllers
 
         // Admin View
         public IActionResult Admin()
-        {
-            return View(bookings);
-        }
+{
+    if (HttpContext.Session.GetString("IsAdminLoggedIn") != "true")
+    {
+        return RedirectToAction("Login", "Admin");
+    }
+
+    return View(bookings);
+}
     }
 }
