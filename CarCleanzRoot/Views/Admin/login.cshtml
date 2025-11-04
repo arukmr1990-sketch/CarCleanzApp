@@ -2,22 +2,22 @@
     ViewData["Title"] = "Admin Login";
 }
 
-<h2 style="color:white;">Admin Login</h2>
+<h2>Admin Login</h2>
 
-<form method="post" action="/Admin/Login" style="max-width:400px;margin:auto;">
-    <div style="margin-bottom:10px;">
-        <label>Username:</label>
-        <input type="text" name="username" required class="form-control" />
+<form method="post" action="/Admin/Login" style="max-width:400px; margin:auto;">
+    <div>
+        <label>Username</label>
+        <input type="text" name="username" class="form-control" required />
     </div>
-    <div style="margin-bottom:10px;">
-        <label>Password:</label>
-        <input type="password" name="password" required class="form-control" />
+    <div style="margin-top:10px;">
+        <label>Password</label>
+        <input type="password" name="password" class="form-control" required />
     </div>
-    <button type="submit">Login</button>
-
-    @if (ViewBag.Error != null)
+    <div style="margin-top:15px;">
+        <button type="submit" class="btn btn-primary w-100">Login</button>
+    </div>
+    @if(ViewBag.Error != null)
     {
-        <p style="color:red;">@ViewBag.Error</p>
+        <p style="color:red; margin-top:10px;">@ViewBag.Error</p>
     }
 </form>
-
