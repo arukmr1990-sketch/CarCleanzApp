@@ -1,9 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using CarCleanz.Models;
 using CarCleanz.Data;
-using System.Linq;
 
-namespace CarCleanzApp.Controllers
+namespace CarCleanz.Controllers
 {
     public class BookingController : Controller
     {
@@ -14,13 +13,12 @@ namespace CarCleanzApp.Controllers
             _context = context;
         }
 
-        // GET: Booking/Create
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Booking/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(Booking booking)
@@ -30,25 +28,17 @@ namespace CarCleanzApp.Controllers
                 _context.Bookings.Add(booking);
                 _context.SaveChanges();
 
-                ViewBag.BookingId = booking.Id;
-                ViewBag.Name = booking.Name;
-                ViewBag.Email = booking.Email;
-                ViewBag.VehicleType = booking.VehicleType;
-                ViewBag.ServiceType = booking.Service;
-                ViewBag.BookingDate = booking.BookingDate.ToString("dd-MM-yyyy");
-                ViewBag.Phone = booking.Phone;
-
-                return View("Success", booking);
+                // Redirect to Success page after saving
+                return RedirectToAction("success");
             }
 
+            // If validation fails, reload the form
             return View(booking);
         }
 
-        // GET: Admin view
-        public IActionResult Admin()
+        public IActionResult success()
         {
-            var bookings = _context.Bookings.ToList();
-            return View(bookings);
+            return View();
         }
     }
 }
