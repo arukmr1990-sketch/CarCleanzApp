@@ -20,8 +20,8 @@ namespace CarCleanz.Models
         public string Address { get; set; }
 
         [Required]
-        [Display(Name = "Phone Number")]
-        public string PhoneNumber { get; set; }
+        [Display(Name = "Phone")]
+        public string Phone { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
