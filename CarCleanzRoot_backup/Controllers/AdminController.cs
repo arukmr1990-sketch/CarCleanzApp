@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Http;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using CarCleanz.Models; // adjust if your namespace differs
 using CarCleanz.Data;
@@ -17,7 +15,7 @@ namespace CarCleanzApp.Controllers
             _context = context;
         }
 
-        // ? Show Login Page
+        // ✅ Show Login Page
         [HttpGet]
         public IActionResult Login()
         {
@@ -28,11 +26,11 @@ namespace CarCleanzApp.Controllers
             return View();
         }
 
-        // ? Handle Login POST
+        // ✅ Handle Login POST
         [HttpPost]
         public IActionResult Login(string username, string password)
         {
-            // Simple static check � replace with DB validation if needed
+            // Simple static check — replace with DB validation if needed
             if (username == "admin" && password == "carcleanz@123")
             {
                 HttpContext.Session.SetString("IsAdmin", "true");
@@ -44,7 +42,7 @@ namespace CarCleanzApp.Controllers
             return View();
         }
 
-        // ? Admin Dashboard � Show all bookings
+        // ✅ Admin Dashboard — Show all bookings
         public IActionResult Index()
         {
             if (HttpContext.Session.GetString("IsAdmin") != "true")
@@ -54,7 +52,7 @@ namespace CarCleanzApp.Controllers
             return View(bookings);
         }
 
-        // ? Logout
+        // ✅ Logout
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
