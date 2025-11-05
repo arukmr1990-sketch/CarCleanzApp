@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
 using CarCleanz.Models;
 using CarCleanz.Data;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace CarCleanzApp.Controllers
@@ -11,48 +9,44 @@ namespace CarCleanzApp.Controllers
     {
         private readonly ApplicationDbContext _context;
 
-        // ? Inject the database context
         public BookingController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Booking form
-        public IActionResult Index()
+        // GET: Booking/Create
+        public IActionResult Create()
         {
             return View();
         }
 
+        // POST: Booking/Create
         [HttpPost]
-        public IActionResult Submit(Booking booking)
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Booking booking)
         {
             if (ModelState.IsValid)
             {
-                // ? Save booking into database
                 _context.Bookings.Add(booking);
                 _context.SaveChanges();
 
-                return RedirectToAction("Success");
+                ViewBag.BookingId = booking.Id;
+                ViewBag.Name = booking.Name;
+                ViewBag.Email = booking.Email;
+                ViewBag.VehicleType = booking.VehicleType;
+                ViewBag.ServiceType = booking.Service;
+                ViewBag.BookingDate = booking.BookingDate.ToString("dd-MM-yyyy");
+                ViewBag.Phone = booking.Phone;
+
+                return View("Success", booking);
             }
 
-            // If invalid, re-show the form with validation messages
-            return View("Index", booking);
+            return View(booking);
         }
 
-        public IActionResult Success()
-        {
-            return View();
-        }
-
-        // ? Admin View
+        // GET: Admin view
         public IActionResult Admin()
         {
-            if (HttpContext.Session.GetString("IsAdminLoggedIn") != "true")
-            {
-                return RedirectToAction("Login", "Admin");
-            }
-
-            // ? Fetch bookings from DB instead of static list
             var bookings = _context.Bookings.ToList();
             return View(bookings);
         }

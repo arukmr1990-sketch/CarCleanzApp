@@ -1,8 +1,8 @@
+using Microsoft.EntityFrameworkCore;
 using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.EntityFrameworkCore;
 using CarCleanz.Data;
 
 
