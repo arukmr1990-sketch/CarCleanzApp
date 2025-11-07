@@ -1,20 +1,21 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using CarCleanz.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ? Add this (don’t remove connection string)
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
-    ?? "Data Source=CarCleanz.db";
-
+// ? Configure EF Core with SQLite
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlite(connectionString));
+    options.UseSqlite("Data Source=CarCleanz.db"));
 
+// ? Add MVC / Razor views
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-// ? Typical middleware setup
+// ? Configure HTTP request pipeline
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -23,9 +24,11 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
 app.UseRouting();
 app.UseAuthorization();
 
+// ? Default route
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
