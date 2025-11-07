@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using CarCleanz.Models;
 using CarCleanz.Data;
+using System.Threading.Tasks;
 
 namespace CarCleanz.Controllers
 {
@@ -21,24 +22,23 @@ namespace CarCleanz.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Booking booking)
+        public async Task<IActionResult> Create(Booking booking)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Bookings.Add(booking);
-                _context.SaveChanges();
+            if (!ModelState.IsValid)
+                return View(booking);
 
-                // Redirect to Success page after saving
-                return RedirectToAction("success");
-            }
+            _context.Bookings.Add(booking);
+            await _context.SaveChangesAsync();
 
-            // If validation fails, reload the form
-            return View(booking);
+            // Use nameof so refactors keep this correct
+            return RedirectToAction(nameof(Success));
         }
 
-        public IActionResult success()
+        // Note PascalCase name
+        [HttpGet]
+        public IActionResult Success()
         {
-            return View();
+            return View(); // looks for Views/Booking/Success.cshtml
         }
     }
 }
