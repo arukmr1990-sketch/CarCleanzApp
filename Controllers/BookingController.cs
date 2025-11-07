@@ -35,7 +35,7 @@ namespace CarCleanz.Controllers
     TempData["Phone"] = booking.Phone;
     TempData["VehicleType"] = booking.VehicleType;
     TempData["ServiceType"] = booking.Service;
-    TempData["BookingDate"] = booking.BookingDate?.ToString("dd MMM yyyy");
+    TempData["BookingDate"] = booking.BookingDate.ToString("dd MMM yyyy");
 
             //  Post-Redirect-Get pattern
             return RedirectToAction(nameof(Success));
