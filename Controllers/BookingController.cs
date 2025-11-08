@@ -1,12 +1,19 @@
 using Microsoft.AspNetCore.Mvc;
 using CarCleanz.Models;
 using CarCleanz.Data;
-using System.Collections.Generic;
 using System.Linq;
+
 namespace CarCleanzApp.Controllers
 {
     public class BookingController : Controller
     {
+        private readonly ApplicationDbContext _context;
+
+        public BookingController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
         public IActionResult Index()
         {
             return View("Create");
@@ -24,15 +31,13 @@ namespace CarCleanzApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Optional: Save to DB here
-                // _context.Bookings.Add(model);
-                // _context.SaveChanges();
+                _context.Bookings.Add(model);
+                _context.SaveChanges();
 
-                // Pass data to Success view
                 ViewBag.Name = model.Name;
                 ViewBag.Email = model.Email;
                 ViewBag.VehicleType = model.VehicleType;
-                ViewBag.ServicePackage = model.ServicePackage; // ? fixed name
+                ViewBag.ServicePackage = model.ServicePackage;
                 ViewBag.BookingDate = model.BookingDate.ToString("dd-MM-yyyy");
                 ViewBag.Phone = model.Phone;
 
@@ -41,15 +46,17 @@ namespace CarCleanzApp.Controllers
 
             return View(model);
         }
-public IActionResult Admin()
-{
-    // ? Fetch all bookings from SQLite
-    var bookings = _context.Bookings.ToList();
 
-    return View(bookings);
-}        public IActionResult Success()
+        public IActionResult Success()
         {
             return View();
+        }
+
+        public IActionResult Admin()
+        {
+            // ? Fetch all bookings from SQLite
+            var bookings = _context.Bookings.ToList();
+            return View(bookings);
         }
     }
 }
