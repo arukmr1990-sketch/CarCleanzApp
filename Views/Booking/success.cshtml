@@ -1,3 +1,4 @@
+@model CarCleanz.Models.Booking
 @{
     ViewData["Title"] = "Booking Success";
 }
@@ -8,18 +9,19 @@
             <div class="mb-3">
                 <img src="~/images/success.png" alt="Success" width="100" />
             </div>
+
             <h2 class="text-success fw-bold mb-3">Booking Successful!</h2>
             <p class="text-muted mb-4">
-                Thank you for booking with <strong>Car Cleanz ????</strong><br />
+                Thank you for booking with <strong>Car Cleanz</strong><br />
                 Your appointment has been confirmed successfully.
             </p>
 
             <div class="text-start bg-light p-3 rounded-4 border mb-4">
-                <h5 class="text-dark mb-3">?? Booking Details</h5>
+                <h5 class="fw-bold">Booking Details</h5>
                 <p><strong>Name:</strong> @ViewBag.Name</p>
                 <p><strong>Email:</strong> @ViewBag.Email</p>
                 <p><strong>Vehicle Type:</strong> @ViewBag.VehicleType</p>
-                <p><strong>Service Package:</strong> @ViewBag.ServiceType</p>
+                <p><strong>Service Package:</strong> @ViewBag.ServicePackage</p>
                 <p><strong>Date:</strong> @ViewBag.BookingDate</p>
                 <p><strong>Contact:</strong> @ViewBag.Phone</p>
             </div>

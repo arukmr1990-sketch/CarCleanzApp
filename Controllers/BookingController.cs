@@ -22,19 +22,18 @@ namespace CarCleanzApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                // You can save to DB here if needed
+                // Optional: Save to DB here
                 // _context.Bookings.Add(model);
                 // _context.SaveChanges();
 
-                // Pass booking data to Success view using ViewBag
+                // Pass data to Success view
                 ViewBag.Name = model.Name;
                 ViewBag.Email = model.Email;
                 ViewBag.VehicleType = model.VehicleType;
-                ViewBag.ServicePackage = model.ServicePackage;
+                ViewBag.ServicePackage = model.ServicePackage; // ? fixed name
                 ViewBag.BookingDate = model.BookingDate.ToString("dd-MM-yyyy");
                 ViewBag.Phone = model.Phone;
 
-                // Return the Success view directly with data
                 return View("Success");
             }
 
