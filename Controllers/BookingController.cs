@@ -30,7 +30,7 @@ namespace CarCleanzApp.Controllers
                 ViewBag.Name = model.Name;
                 ViewBag.Email = model.Email;
                 ViewBag.VehicleType = model.VehicleType;
-                ViewBag.ServiceType = model.ServiceType;
+                ViewBag.ServicePackage = model.ServicePackage;
                 ViewBag.BookingDate = model.BookingDate.ToString("dd-MM-yyyy");
                 ViewBag.Phone = model.Phone;
 

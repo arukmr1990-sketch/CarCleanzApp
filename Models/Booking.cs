@@ -20,7 +20,7 @@ namespace CarCleanz.Models
         public string VehicleType { get; set; }
 
         [Required]
-        public string Service { get; set; }
+        public string ServicePackage { get; set; }
 
         [Required]
         public DateTime BookingDate { get; set; }
