@@ -39,7 +39,16 @@ namespace CarCleanzApp.Controllers
 
             return View(model);
         }
+public IActionResult Admin()
+{
+    // ? Create an empty list (for now, until database connection is added)
+    List<Booking> bookings = new List<Booking>();
 
+    // Later, when you connect EF Core or SQLite, replace the above with:
+    // var bookings = _context.Bookings.ToList();
+
+    return View(bookings);
+}
         public IActionResult Success()
         {
             return View();
