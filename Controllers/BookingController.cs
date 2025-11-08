@@ -5,31 +5,39 @@ namespace CarCleanzApp.Controllers
 {
     public class BookingController : Controller
     {
-        // Default page — loads the booking form
         public IActionResult Index()
         {
             return View("Create");
         }
 
-        // Shows the booking form
         [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
-        // Handles form submission
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(Booking model)
         {
             if (ModelState.IsValid)
             {
-                // Save booking to database (or file)
-                // ... your logic here
+                // You can save to DB here if needed
+                // _context.Bookings.Add(model);
+                // _context.SaveChanges();
 
-                return RedirectToAction("Success");
+                // Pass booking data to Success view using ViewBag
+                ViewBag.Name = model.Name;
+                ViewBag.Email = model.Email;
+                ViewBag.VehicleType = model.VehicleType;
+                ViewBag.ServiceType = model.ServiceType;
+                ViewBag.BookingDate = model.BookingDate.ToString("dd-MM-yyyy");
+                ViewBag.Phone = model.Phone;
+
+                // Return the Success view directly with data
+                return View("Success");
             }
+
             return View(model);
         }
 
