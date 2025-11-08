@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using CarCleanzApp.Models;
+using CarCleanz.Models;
 
 namespace CarCleanzApp.Controllers
 {
