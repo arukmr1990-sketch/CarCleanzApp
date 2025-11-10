@@ -80,6 +80,35 @@ body.theme-redblack {
     filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.8));
 }
 
+/* Hero section styling */
+.hero-section {
+    padding: 60px 0 40px;
+    color: #fff;
+    text-align: center;
+    position: relative;
+}
+
+.hero-logo {
+    margin-top: 25px;
+}
+
+.hero-carcleanz-logo {
+    height: 120px; /* Adjust to your preference */
+    width: auto;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.4));
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.hero-carcleanz-logo:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+}
+
+/* Hide old SVG completely if still loaded anywhere */
+#car-path-svg {
+    display: none !important;
+}
+
 /* Navbar */
 .main-nav {
     background-color: #000;
