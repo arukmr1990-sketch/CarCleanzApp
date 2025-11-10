@@ -39,10 +39,13 @@ body.theme-redblack {
 
 /* Logo */
 .logo-wrap img.logo-img {
-    height: 70px;
+    height: 80px;
     width: auto;
     transition: transform 0.3s ease;
 }
+.logo-wrap img.logo-img:hover {
+    transform: scale(1.05);
+
 @keyframes slideIn {
     from { opacity: 0; transform: translateX(-10px); }
     to { opacity: 1; transform: translateX(0); }
@@ -70,19 +73,15 @@ body.theme-redblack {
     width: auto;
     transform: translateY(4px);
 /* Header Layout */
+
 .site-header {
-    background: transparent;
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 60px;
-    z-index: 10;
+    padding: 20px 60px;
+    background-color: rgba(0, 0, 0, 0.9);
+    border-bottom: 2px solid #ff4d4d;
 }
-
 
 /* Header container */
 .header-container {
@@ -178,6 +177,12 @@ body.theme-redblack {
         gap: 10px;
     }
 }
+.content {
+    padding: 40px;
+    background-color: #111;
+    color: white;
+    min-height: 80vh;
+}
 
 /* Navbar */
 .main-nav ul {
@@ -229,7 +234,15 @@ body.theme-redblack {
 
 
 
-
+/* FOOTER */
+.site-footer {
+    background-color: #000;
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+    color: #ccc;
+    border-top: 1px solid #222;
+}
 
 
 
