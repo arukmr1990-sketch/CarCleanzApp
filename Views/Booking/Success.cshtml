@@ -14,7 +14,7 @@
         <p><strong>Phone:</strong> @Model.Phone</p>
         <p><strong>Vehicle Type:</strong> @Model.VehicleType</p>
         <p><strong>Service Package:</strong> @Model.ServicePackage</p>
-        <p><strong>Booking Date:</strong> @Model.BookingDate.ToString("dd-MM-yyyy")</p>
+        <p><strong>Booking Date:</strong> @(DateTime.TryParse(Model.BookingDate, out var d) ? d.ToString("dd-MM-yyyy") : Model.BookingDate)</p>
     </div>
 
     <div class="mt-4">
