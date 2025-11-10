@@ -1,63 +1,40 @@
-using Microsoft.AspNetCore.Http;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using CarCleanz.Models; // adjust if your namespace differs
 using CarCleanz.Data;
+using System.Linq;
+
+
+
 namespace CarCleanz.Controllers
-
-
-
 {
     public class AdminController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private const string AdminUser = "admin";
+        private const string AdminPass = "1234";
 
-        public AdminController(ApplicationDbContext context)
-        {
-            _context = context;
-        }
-
-        // ? Show Login Page
         [HttpGet]
         public IActionResult Login()
         {
-            // If already logged in, redirect to Admin Dashboard
-            if (HttpContext.Session.GetString("IsAdmin") == "true")
-                return RedirectToAction("Index");
-
             return View();
         }
 
-        // ? Handle Login POST
         [HttpPost]
         public IActionResult Login(string username, string password)
         {
-            // Simple static check — replace with DB validation if needed
-            if (username == "admin" && password == "carcleanz@123")
+            if (username == AdminUser && password == AdminPass)
             {
                 HttpContext.Session.SetString("IsAdmin", "true");
-                HttpContext.Session.SetString("AdminName", "Car Cleanz Admin");
-                return RedirectToAction("Index");
+                return RedirectToAction("Admin", "Booking");
             }
 
-            ViewBag.Error = "Invalid username or password!";
+            ViewBag.Error = "Invalid username or password.";
             return View();
         }
 
-        // ? Admin Dashboard — Show all bookings
-        public IActionResult Index()
-        {
-            if (HttpContext.Session.GetString("IsAdmin") != "true")
-                return RedirectToAction("Login");
-
-            var bookings = _context.Bookings.ToList();
-            return View(bookings);
-        }
-
-        // ? Logout
         public IActionResult Logout()
         {
-            HttpContext.Session.Clear();
+            HttpContext.Session.Remove("IsAdmin");
             return RedirectToAction("Login");
         }
     }

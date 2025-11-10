@@ -21,6 +21,12 @@ namespace CarCleanz.Controllers
         {
             return View();
         }
+[HttpGet]
+public IActionResult Index()
+{
+    // Redirect /Booking to /Booking/Create
+    return RedirectToAction("Create");
+}
 
         // ? POST: /Booking/Create
         [HttpPost]
@@ -43,13 +49,14 @@ namespace CarCleanz.Controllers
 [HttpGet]
 public IActionResult Admin()
 {
-    // Fetch all bookings from DB
-    var bookings = _context.Bookings.ToList();
+    if (HttpContext.Session.GetString("IsAdmin") != "true")
+    {
+        return RedirectToAction("Login", "Admin");
+    }
 
-    // Return the Admin view (Views/Booking/Admin.cshtml)
+    var bookings = _context.Bookings.ToList();
     return View(bookings);
 }
-
 
     }
 // ? GET: /Booking/Admin
