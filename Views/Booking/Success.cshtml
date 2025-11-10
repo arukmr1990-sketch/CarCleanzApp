@@ -1,18 +1,24 @@
 @model CarCleanz.Models.Booking
 
-<h2>Booking Debug View</h2>
+<div class="text-center mt-5">
+    <h2 style="color: #28a745;">Booking Successful!</h2>
+    <p>Thank you for booking with <strong>Car Cleanz</strong>.</p>
+    <p>Your appointment has been confirmed successfully.</p>
 
-<p><strong>Model is null?</strong> @(Model == null ? "YES" : "NO")</p>
+    <div class="mt-4 text-left mx-auto" 
+         style="max-width: 420px; background: #ffffff; border-radius: 12px; padding: 25px; box-shadow: 0 2px 10px rgba(0,0,0,0.2);">
+        <h4 style="color:#333;">Booking Details</h4>
+        <hr />
+        <p><strong>Name:</strong> @Model.Name</p>
+        <p><strong>Email:</strong> @Model.Email</p>
+        <p><strong>Phone:</strong> @Model.Phone</p>
+        <p><strong>Vehicle Type:</strong> @Model.VehicleType</p>
+        <p><strong>Service Package:</strong> @Model.ServicePackage</p>
+        <p><strong>Booking Date:</strong> @Model.BookingDate.ToString("dd-MM-yyyy")</p>
+    </div>
 
-@if (Model != null)
-{
-    <p><strong>Name:</strong> @Model.Name</p>
-    <p><strong>Email:</strong> @Model.Email</p>
-    <p><strong>Phone:</strong> @Model.Phone</p>
-    <p><strong>Vehicle:</strong> @Model.VehicleType</p>
-    <p><strong>Service:</strong> @Model.ServicePackage</p>
-}
-else
-{
-    <p style="color:red;">No model data was passed.</p>
-}
+    <div class="mt-4">
+        <a href="/" class="btn btn-primary" 
+           style="background:#007bff; border:none; border-radius:6px; padding:8px 20px;">Back to Home</a>
+    </div>
+</div>
