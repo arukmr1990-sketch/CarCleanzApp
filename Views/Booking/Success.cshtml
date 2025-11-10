@@ -1,0 +1,18 @@
+@model CarCleanz.Models.Booking
+
+<h2>Booking Debug View</h2>
+
+<p><strong>Model is null?</strong> @(Model == null ? "YES" : "NO")</p>
+
+@if (Model != null)
+{
+    <p><strong>Name:</strong> @Model.Name</p>
+    <p><strong>Email:</strong> @Model.Email</p>
+    <p><strong>Phone:</strong> @Model.Phone</p>
+    <p><strong>Vehicle:</strong> @Model.VehicleType</p>
+    <p><strong>Service:</strong> @Model.ServicePackage</p>
+}
+else
+{
+    <p style="color:red;">No model data was passed.</p>
+}
