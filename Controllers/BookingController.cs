@@ -30,22 +30,30 @@ public IActionResult Index()
 
         // ? POST: /Booking/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Create(Booking booking)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Bookings.Add(booking);
-                _context.SaveChanges();
-                return RedirectToAction("Success");
-            }
-            return View(booking);
-        }
+[ValidateAntiForgeryToken]
+public IActionResult Create(Booking booking)
+{
+    if (ModelState.IsValid)
+    {
+        _context.Bookings.Add(booking);
+        _context.SaveChanges();
 
-        public IActionResult Success()
-        {
-            return View();
-        }
+        // ? Pass the booking ID to Success page
+        return RedirectToAction("Success", new { id = booking.Id });
+    }
+    return View(booking);
+}
+
+       public IActionResult Success(int id)
+{
+    var booking = _context.Bookings.FirstOrDefault(b => b.Id == id);
+    if (booking == null)
+    {
+        return RedirectToAction("Create");
+    }
+
+    return View(booking);
+}
 [HttpGet]
 public IActionResult Admin()
 {
