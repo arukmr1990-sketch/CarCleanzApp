@@ -40,8 +40,6 @@ namespace CarCleanz.Controllers
         {
             return View();
         }
-    }
-// ? GET: /Booking/Admin
 [HttpGet]
 public IActionResult Admin()
 {
@@ -51,4 +49,9 @@ public IActionResult Admin()
     // Return the Admin view (Views/Booking/Admin.cshtml)
     return View(bookings);
 }
+
+
+    }
+// ? GET: /Booking/Admin
+
 }
