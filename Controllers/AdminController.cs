@@ -3,7 +3,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using CarCleanz.Models; // adjust if your namespace differs
 using CarCleanz.Data;
-namespace CarCleanzApp.Controllers
+namespace CarCleanz.Controllers
 
 
 
