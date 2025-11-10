@@ -65,6 +65,56 @@ body.theme-redblack {
     height: 70px; /* Bigger and more visible */
     width: auto;
     transform: translateY(4px);
+/* Header Layout */
+.site-header {
+    background-color: #000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 10px 30px;
+}
+
+/* Header container */
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Logo styling */
+.nav-logo {
+    height: 55px;
+    width: auto;
+    filter: drop-shadow(0 0 6px rgba(255, 0, 0, 0.4));
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.nav-logo:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.6));
+}
+
+/* Navigation Menu */
+.main-nav {
+    display: flex;
+    gap: 30px;
+}
+
+.main-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.main-nav a:hover {
+    color: #ff4d4d;
+}
+
 }
 
 /* Car Cleanz white logo text */
