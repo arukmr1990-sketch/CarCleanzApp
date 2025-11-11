@@ -219,7 +219,8 @@ body.theme-redblack {
     margin: 10px 0 12px;
     text-shadow: 0 0 6px rgba(255, 0, 0, 0.4);
 }
-.rupee-symbol {
+
+.price span {
     font-size: 20px;
     vertical-align: super;
     margin-right: 3px;
