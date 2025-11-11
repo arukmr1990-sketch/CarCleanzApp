@@ -117,6 +117,24 @@ body.theme-redblack {
 .hero-section p {
     margin-top: 5px !important;
 }
+/* --- Book Now Button --- */
+.btn-book {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 18px;
+    background: #ff2d2d;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-book:hover {
+    background: #b30000;
+    transform: translateY(-2px);
+}
+
 
 /* FOOTER */
 .site-footer {
