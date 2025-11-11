@@ -98,6 +98,17 @@ body.theme-redblack {
     text-align: center;
   }
 }
+/* --- Remove space between header and hero section --- */
+.hero-section {
+    margin-top: 0;
+    padding-top: 20px; /* reduce top padding to make logo and text closer */
+}
+
+/* if there's an extra div wrapping hero section, also remove its margin */
+main, .content {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
 
 
 
