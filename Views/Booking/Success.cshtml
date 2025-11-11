@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Booking Successful";
 }
+@model CarCleanz.Models.Booking
 
 <section class="success-section" style="text-align:center; padding:40px; color:white;">
     <h2 style="color:#ff2d2d;">? Booking Successful!</h2>
@@ -12,8 +13,11 @@
         <hr style="border-color:#333;" />
         <p><strong>Booking ID:</strong> @Model.Id</p>
         <p><strong>Name:</strong> @Model.Name</p>
+        <p><strong>Phone:</strong> @Model.Phone</p>
+        <p><strong>Address:</strong> @Model.Address</p>
         <p><strong>Vehicle Type:</strong> @Model.VehicleType</p>
         <p><strong>House Type:</strong> @Model.HouseType</p>
+        <p><strong>Car Number:</strong> @Model.CarNumber</p>
         <p><strong>Amount Paid:</strong> ?@Model.Price</p>
         <p>Thank you for booking with <strong>Car Cleanz</strong>.</p>
     </div>

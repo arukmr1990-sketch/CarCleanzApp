@@ -3,27 +3,31 @@
 <h2>Booking Records (Admin Panel)</h2>
 
 <table border="1" cellpadding="6" cellspacing="0">
-    <thead>
+     <thead>
         <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Vehicle Type</th>
-            <th>Service Package</th>
-            <th>Booking Date</th>
-        </tr>
+                <td>@booking.Name</td>
+                <td>@booking.Phone</td>
+                <td>@booking.Address</td>
+                <td>@booking.VehicleType</td>
+                <td>@booking.HouseType</td>
+                <td>@booking.CarNumber</td>
+                <td>?@booking.Price</td>
+                <td>@booking.BookingDate.ToShortDateString()</td>
+            </tr>
     </thead>
     <tbody>
     @foreach (var booking in Model)
     {
         <tr>
-            <td>@booking.Name</td>
-            <td>@booking.Email</td>
-            <td>@booking.Phone</td>
-            <td>@booking.VehicleType</td>
-            <td>@booking.ServicePackage</td>
-            <td>@booking.BookingDate</td>
-        </tr>
+                <td>@booking.Name</td>
+                <td>@booking.Phone</td>
+                <td>@booking.Address</td>
+                <td>@booking.VehicleType</td>
+                <td>@booking.HouseType</td>
+                <td>@booking.CarNumber</td>
+                <td>?@booking.Price</td>
+                <td>@booking.BookingDate.ToShortDateString()</td>
+            </tr>
     }
     </tbody>
 </table>
