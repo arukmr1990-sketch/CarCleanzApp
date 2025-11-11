@@ -1,3 +1,5 @@
+@model CarCleanz.Models.Booking
+
 @{
     ViewBag.Title = "Booking Successful";
 }
@@ -8,9 +10,11 @@
     <div style="margin:30px auto; max-width:500px; background:#111; padding:20px; border-radius:10px; text-align:left;">
         <h3 style="color:#ff2d2d;">Booking Summary</h3>
         <hr style="border-color:#333;" />
-        <p><strong>Name:</strong> @ViewBag.Name</p>
-        <p><strong>Vehicle Type:</strong> @ViewBag.VehicleType</p>
-        <p><strong>Service Package:</strong> @ViewBag.ServicePackage</p>
+        <p><strong>Booking ID:</strong> @Model.Id</p>
+        <p><strong>Name:</strong> @Model.Name</p>
+        <p><strong>Vehicle Type:</strong> @Model.VehicleType</p>
+        <p><strong>Service Package:</strong> @Model.ServicePackage</p>
+        <p><strong>Amount Paid:</strong> ?@Model.Price</p>
         <p>Thank you for booking with <strong>Car Cleanz</strong>.</p>
     </div>
 

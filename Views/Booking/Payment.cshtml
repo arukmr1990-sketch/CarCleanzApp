@@ -1,3 +1,5 @@
+@model CarCleanz.Models.Booking
+
 @{
     ViewBag.Title = "Payment Page";
 }
@@ -6,11 +8,12 @@
     <h2 style="color:#ff2d2d;">Complete Your Payment</h2>
 
     <div style="margin:30px auto; max-width:400px; text-align:left; background:#111; padding:20px; border-radius:10px;">
-        <p><strong>Name:</strong> @ViewBag.Name</p>
-        <p><strong>Email:</strong> @ViewBag.Email</p>
-        <p><strong>Phone:</strong> @ViewBag.Phone</p>
-        <p><strong>Vehicle Type:</strong> @ViewBag.VehicleType</p>
-        <p><strong>Service Package:</strong> @ViewBag.ServicePackage</p>
+        <p><strong>Name:</strong> @Model.Name</p>
+        <p><strong>Email:</strong> @Model.Email</p>
+        <p><strong>Phone:</strong> @Model.Phone</p>
+        <p><strong>Vehicle Type:</strong> @Model.VehicleType</p>
+        <p><strong>Service Package:</strong> @Model.ServicePackage</p>
+        <p><strong>Amount:</strong> ?@Model.Price</p>
     </div>
 
     <div style="margin:30px auto; max-width:280px;">
@@ -19,7 +22,7 @@
         <p style="color:#ff4d4d;"><strong>carcleanz@upi</strong></p>
     </div>
 
-    <a href="/Booking/Success?name=@ViewBag.Name&vehicleType=@ViewBag.VehicleType&servicePackage=@ViewBag.ServicePackage"
+    <a href="/Booking/Success/@Model.Id"
        class="btn btn-danger"
        style="background:#ff2d2d; color:#fff; padding:10px 20px; border-radius:6px; text-decoration:none;">
        Payment Done
