@@ -5,26 +5,30 @@
 
     <table class="table table-bordered table-striped">
         <thead>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Vehicle Type</th>
-                <th>Service Package</th>
-                <th>Booking Date</th>
-            </tr>
-        </thead>
+        <tr>
+            <th>Customer Name</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Vehicle Type</th>
+            <th>House Type</th>
+            <th>Car Number</th>
+            <th>Amount</th>
+            <th>Booking Date</th>
+        </tr>
+    </thead>
         <tbody>
             @foreach (var booking in Model)
             {
-                <tr>
-                    <td>@booking.Name</td>
-                    <td>@booking.Email</td>
-                    <td>@booking.Phone</td>
-                    <td>@booking.VehicleType</td>
-                    <td>@booking.ServicePackage</td>
-                    <td>@booking.BookingDate</td>
-                </tr>
+                 <tr>
+                <td>@booking.Name</td>
+                <td>@booking.Phone</td>
+                <td>@booking.Address</td>
+                <td>@booking.VehicleType</td>
+                <td>@booking.HouseType</td>
+                <td>@booking.CarNumber</td>
+                <td>?@booking.Price</td>
+                <td>@booking.BookingDate.ToShortDateString()</td>
+            </tr>
             }
         </tbody>
     </table>
