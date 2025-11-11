@@ -211,6 +211,14 @@ body.theme-redblack {
     background: #b30000;
     transform: translateY(-2px);
 }
+/* --- Price Styling --- */
+.price {
+    font-size: 26px;
+    font-weight: 700;
+    color: #ff4d4d;
+    margin: 10px 0 12px;
+    text-shadow: 0 0 6px rgba(255, 0, 0, 0.4);
+}
 
 
 /* FOOTER */
