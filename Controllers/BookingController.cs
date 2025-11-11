@@ -59,15 +59,13 @@ namespace CarCleanz.Controllers
         }
 
         // Booking Successful Page
-       public IActionResult Success(int id)
+       public IActionResult Success(string name, string vehicleType, string servicePackage)
 {
-    // Fetch booking details from DB by ID
-    var booking = _context.Bookings.FirstOrDefault(b => b.Id == id);
-
-    if (booking == null)
-    {
-        return NotFound(); // if invalid ID
-    }
+    ViewBag.Name = name;
+    ViewBag.VehicleType = vehicleType;
+    ViewBag.ServicePackage = servicePackage;
+    return View();
+}
 
     // Pass booking data to the view
     return View(booking);
