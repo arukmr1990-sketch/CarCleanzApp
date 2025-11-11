@@ -1,52 +1,55 @@
 @model CarCleanz.Models.Booking
 
-<h2>Book Your Car Cleaning Service</h2>
+@{
+    ViewBag.Title = "Book Your Car Cleaning";
+}
 
-<form asp-action="Create" method="post">
-    @Html.AntiForgeryToken()
-    <div>
-        <label>Name:</label><br />
-        <input asp-for="Name" class="form-control" required />
-    </div>
+<section class="booking-form" style="text-align:center; color:white; padding:40px;">
+    <h2 style="color:#ff2d2d;">Book Your Car Cleaning</h2>
 
-    <div>
-        <label>Email:</label><br />
-        <input asp-for="Email" type="email" class="form-control" required />
-    </div>
+    <form asp-action="Create" method="post" style="max-width:500px; margin:auto; text-align:left;">
+        <div class="form-group">
+            <label>Name</label>
+            <input asp-for="Name" class="form-control" required />
+        </div>
 
-    <div>
-        <label>Phone:</label><br />
-        <input asp-for="Phone" class="form-control" required />
-    </div>
+        <div class="form-group">
+            <label>Phone</label>
+            <input asp-for="Phone" class="form-control" required />
+        </div>
 
-    <div>
-        <label>Vehicle Type:</label><br />
-        <select asp-for="VehicleType" class="form-control" required>
-            <option value="">-- Select Vehicle Type --</option>
-            <option>Car</option>
-            <option>Bike</option>
-            <option>SUV</option>
-            <option>Van</option>
-        </select>
-    </div>
+        <div class="form-group">
+            <label>Address</label>
+            <input asp-for="Address" class="form-control" required />
+        </div>
 
-    <div>
-        <label>Service Type:</label><br />
-        <select asp-for="ServicePackage" class="form-control" required>
-            <option value="">-- Select Service Package --</option>
-            <option>Exterior Wash</option>
-            <option>Interior Cleaning</option>
-            <option>Full Detailing</option>
-            <option>Premium Wash</option>
-        </select>
-    </div>
+        <div class="form-group">
+            <label>Vehicle Type</label>
+            <select asp-for="VehicleType" class="form-control" required>
+                <option value="">-- Select Vehicle Type --</option>
+                <option value="Hatchback">Hatchback</option>
+                <option value="Sedan">Sedan</option>
+                <option value="SUV">SUV</option>
+            </select>
+        </div>
 
-    <div>
-        <label>Booking Date:</label><br />
-        <input asp-for="BookingDate" type="date" class="form-control" required />
-    </div>
+        <div class="form-group">
+            <label>House Type</label>
+            <select asp-for="HouseType" class="form-control" required>
+                <option value="">-- Select House Type --</option>
+                <option value="Individual">Individual</option>
+                <option value="Villa">Villa</option>
+                <option value="Apartment">Apartment</option>
+            </select>
+        </div>
 
-    <div style="margin-top:10px;">
-        <button type="submit" class="btn btn-primary">Submit Booking</button>
-    </div>
-</form>
+        <div class="form-group">
+            <label>Car Number</label>
+            <input asp-for="CarNumber" class="form-control" placeholder="TN-22-AB-1234" required />
+        </div>
+
+        <div class="form-group" style="margin-top:20px;">
+            <button type="submit" class="btn btn-danger" style="width:100%;">Proceed to Payment</button>
+        </div>
+    </form>
+</section>

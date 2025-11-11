@@ -23,38 +23,35 @@ namespace CarCleanz.Controllers
 
         // POST: Booking/Create
         [HttpPost]
-        public IActionResult Create(Booking booking)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(booking);
-            }
+public IActionResult Create(Booking booking)
+{
+    if (!ModelState.IsValid)
+    {
+        return View(booking);
+    }
 
-            // Set price automatically based on vehicle type
-            switch ((booking.VehicleType ?? "").ToLowerInvariant())
-            {
-                case "hatchback":
-                    booking.Price = 499;
-                    break;
-                case "sedan":
-                    booking.Price = 650;
-                    break;
-                case "suv":
-                    booking.Price = 750;
-                    break;
-                default:
-                    booking.Price = 0;
-                    break;
-            }
+    // Auto-set price based on vehicle type
+    switch ((booking.VehicleType ?? "").ToLower())
+    {
+        case "hatchback":
+            booking.Price = 499;
+            break;
+        case "sedan":
+            booking.Price = 650;
+            break;
+        case "suv":
+            booking.Price = 750;
+            break;
+        default:
+            booking.Price = 0;
+            break;
+    }
 
-            // Save to DB permanently
-            _context.Bookings.Add(booking);
-            _context.SaveChanges();
+    _context.Bookings.Add(booking);
+    _context.SaveChanges();
 
-            // Redirect to Payment page by id (safer than ViewBag)
-            return RedirectToAction("Payment", new { id = booking.Id });
-        }
-
+    return RedirectToAction("Payment", new { id = booking.Id });
+}
         // GET: Booking/Payment?id=5
         public IActionResult Payment(int id)
         {
