@@ -67,30 +67,6 @@ body.theme-redblack {
     opacity: 0;
 }
 
-/* Red SVG styling */
-#car-path-svg {
-    height: 70px; /* Bigger and more visible */
-    width: auto;
-    transform: translateY(4px);
-/* Header Layout */
-
-.site-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 60px;
-    background-color: rgba(0, 0, 0, 0.9);
-    border-bottom: 2px solid #ff4d4d;
-}
-
-/* Header container */
-.header-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-}
 
 /* Logo styling */
 .nav-logo {
@@ -183,6 +159,43 @@ body.theme-redblack {
     color: white;
     min-height: 80vh;
 }
+/* === NAVBAR STYLES === */
+header {
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 15px 50px;
+}
+
+header .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header img {
+    height: 60px;
+    width: auto;
+}
+
+header nav ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 30px;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+header nav ul li a:hover {
+    color: #ff4d4d; /* hover effect red */
+}
+
 
 /* Navbar */
 .main-nav ul {
