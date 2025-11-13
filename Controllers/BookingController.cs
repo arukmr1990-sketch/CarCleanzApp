@@ -22,58 +22,57 @@ namespace CarCleanz.Controllers
         }
 
         // POST: Booking/Create
-[HttpPost]
-public IActionResult Create(Booking booking)
-{
-    if (!ModelState.IsValid)
+        [HttpPost]
+        public IActionResult Create(Booking booking)
         {
-        // Get last booking
-        var lastBooking = _context.Bookings
-            .OrderByDescending(b => b.Id)
-            .FirstOrDefault();
+            if (!ModelState.IsValid)
+            {
+                return View(booking);
+            }
 
-        int nextNumber = 3000; // starting number
+            // -------------------------------
+            // Generate Custom Booking ID
+            // -------------------------------
+            var lastBooking = _context.Bookings
+                .OrderByDescending(b => b.Id)
+                .FirstOrDefault();
 
-        if (lastBooking != null && !string.IsNullOrEmpty(lastBooking.CustomBookingId))
-        {
-            // extract number from "CCA3000"
-            string numberPart = lastBooking.CustomBookingId.Replace("CCA", "");
-            nextNumber = int.Parse(numberPart) + 1;
+            int nextNumber = 3000;
+
+            if (lastBooking != null && !string.IsNullOrEmpty(lastBooking.CustomBookingId))
+            {
+                string numberPart = lastBooking.CustomBookingId.Replace("CCA", "");
+                nextNumber = int.Parse(numberPart) + 1;
+            }
+
+            booking.CustomBookingId = $"CCA{nextNumber}";
+
+            // -------------------------------
+            // Vehicle Price Calculation
+            // -------------------------------
+            switch ((booking.VehicleType ?? "").ToLower())
+            {
+                case "hatchback":
+                    booking.Price = 499;
+                    break;
+                case "sedan":
+                    booking.Price = 650;
+                    break;
+                case "suv":
+                    booking.Price = 750;
+                    break;
+                default:
+                    booking.Price = 0;
+                    break;
+            }
+
+            // Save to DB
+            _context.Bookings.Add(booking);
+            _context.SaveChanges();
+
+            // Redirect to Payment page
+            return RedirectToAction("Payment", new { id = booking.Id });
         }
-
-        // Assign new booking ID
-        booking.CustomBookingId = $"CCA{nextNumber}";
-
-        _context.Bookings.Add(booking);
-        _context.SaveChanges();
-
-        return RedirectToAction("Success");
-    }
-
-    return View(booking);
-}
-
-    switch ((booking.VehicleType ?? "").ToLower())
-    {
-        case "hatchback":
-            booking.Price = 499;
-            break;
-        case "sedan":
-            booking.Price = 650;
-            break;
-        case "suv":
-            booking.Price = 750;
-            break;
-        default:
-            booking.Price = 0;
-            break;
-    }
-
-    _context.Bookings.Add(booking);
-    _context.SaveChanges();
-
-    return RedirectToAction("Payment", new { id = booking.Id });
-}        
 
         // GET: Booking/Payment?id=5
         public IActionResult Payment(int id)
@@ -82,7 +81,6 @@ public IActionResult Create(Booking booking)
             if (booking == null)
                 return NotFound();
 
-            // Show the payment page with model
             return View(booking);
         }
 
