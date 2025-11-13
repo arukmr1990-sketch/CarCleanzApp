@@ -25,10 +25,15 @@ var app = builder.Build();
 // ? Ensure database is created
 using (var scope = app.Services.CreateScope())
 {
+    var dataPath = Path.Combine(Directory.GetCurrentDirectory(), "Data");
+    if (!Directory.Exists(dataPath))
+    {
+        Directory.CreateDirectory(dataPath);
+    }
+
     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
     db.Database.EnsureCreated();
 }
-
 // ? Configure pipeline
 if (!app.Environment.IsDevelopment())
 {
