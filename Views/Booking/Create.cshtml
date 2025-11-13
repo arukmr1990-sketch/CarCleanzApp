@@ -32,6 +32,12 @@
         <label>Car Number</label>
         <input asp-for="CarNumber" class="form-control" placeholder="TN-22-AB-1234" required />
 
+<div class="form-group">
+    <label asp-for="BookingDate"></label>
+    <input asp-for="BookingDate" class="form-control" type="date" />
+    <span asp-validation-for="BookingDate" class="text-danger"></span>
+</div>
+
         <button type="submit" class="btn btn-danger" style="width:100%; margin-top:20px;">Proceed to Payment</button>
     </form>
 </section>

@@ -27,6 +27,8 @@ namespace CarCleanz.Models
 
         public int Price { get; set; }
 
-        public DateTime BookingDate { get; set; } = DateTime.Now;
+        [Required]
+[DataType(DataType.Date)]
+public DateTime BookingDate { get; set; }
     }
 }
